@@ -1,0 +1,56 @@
+<UserControl x:Class="Floe.Desktop.Features.Home.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:Floe.Desktop.Controls" AutomationProperties.AutomationId="HomePage">
+    <StackPanel>
+        <Border Visibility="{Binding StorageErrorVisibility}" Background="{DynamicResource AccentSoftBrush}" CornerRadius="12" Padding="16,12" Margin="0,0,0,12">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,12,0"><TextBlock Text="保存未完成，计时已暂停" /><TextBlock Text="{Binding StorageErrorText}" TextWrapping="Wrap" Style="{StaticResource CaptionText}" Margin="0,4,0,0" /></StackPanel>
+                <Button Grid.Column="1" Content="重试保存" Command="{Binding RetryStorageCommand}" Style="{StaticResource SecondaryButton}" AutomationProperties.AutomationId="RetryStorage" />
+            </Grid>
+        </Border>
+        <ui:GlassSurface Padding="24,20" AutomationProperties.AutomationId="FocusCard" AutomationProperties.Name="专注空间">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="218" /></Grid.ColumnDefinitions>
+                    <Border CornerRadius="12" Background="{DynamicResource InputBrush}" Padding="3" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="番茄钟" IsChecked="{Binding IsPomodoroMode}" GroupName="FocusMode" Style="{StaticResource ModeSegment}" AutomationProperties.AutomationId="ModePomodoro" />
+                            <RadioButton Content="自由计时" IsChecked="{Binding IsFreeMode}" GroupName="FocusMode" Style="{StaticResource ModeSegment}" AutomationProperties.AutomationId="ModeFree" />
+                        </StackPanel>
+                    </Border>
+                    <ComboBox Grid.Column="2" ItemsSource="{Binding TaskChoices}" SelectedItem="{Binding SelectedTaskChoice, Mode=TwoWay}" IsEnabled="{Binding CanChooseTask}" Style="{StaticResource FocusTaskCombo}"
+                              AutomationProperties.AutomationId="FocusTaskSelector" AutomationProperties.Name="这次在做什么" ToolTip="{Binding TaskBindingHint}">
+                        <ComboBox.ItemTemplate><DataTemplate><TextBlock Text="{Binding Caption}" TextTrimming="CharacterEllipsis" /></DataTemplate></ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                <StackPanel Visibility="{Binding PomodoroVisibility}" Margin="0,18,0,0">
+                    <Grid><TextBlock Text="{Binding CycleText}" Style="{StaticResource CaptionText}" FontSize="11" /><TextBlock Text="{Binding StateText}" Style="{StaticResource CaptionText}" FontSize="11" HorizontalAlignment="Right" AutomationProperties.AutomationId="TimerState" /></Grid>
+                    <ui:TimerDisplay TimeText="{Binding TimerText}" Caption="{Binding PhaseCaption}" TransitionKey="{Binding AccessibleTimerState}" FontSize="76" Margin="0,10,0,0"
+                                     AutomationProperties.Name="{Binding AccessibleTimer}" AutomationProperties.AutomationId="TimerDisplay" AutomationProperties.ItemStatus="{Binding PhaseCaption}" />
+                    <TextBlock Text="{Binding HintText}" Style="{StaticResource CaptionText}" TextAlignment="Center" Margin="0,0,0,12" />
+                    <Button Content="{Binding PrimaryActionText}" Command="{Binding PrimaryActionCommand}" Style="{StaticResource PrimaryButton}" MinWidth="152" HorizontalAlignment="Center" AutomationProperties.AutomationId="TimerPrimaryAction" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,6,0,0">
+                        <Button Content="重新开始" Command="{Binding RestartCommand}" Style="{StaticResource QuietButton}" MinHeight="32" Padding="16,5" AutomationProperties.AutomationId="TimerRestart" ToolTip="重新开始当前阶段，之前的投入不计为完整番茄" />
+                        <Button Content="跳过阶段" Command="{Binding SkipCommand}" Style="{StaticResource QuietButton}" MinHeight="32" Padding="16,5" AutomationProperties.AutomationId="TimerSkip" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding ConfigurationHint}" Style="{StaticResource CaptionText}" FontSize="11" TextAlignment="Center" Margin="0,2,0,0" />
+                    <TextBlock Text="{Binding CurrentTaskText}" Style="{StaticResource CaptionText}" TextTrimming="CharacterEllipsis" TextAlignment="Center" Margin="0,10,0,0" ToolTip="{Binding TaskBindingHint}" AutomationProperties.AutomationId="CurrentFocusTask" />
+                </StackPanel>
+                <StackPanel Visibility="{Binding FreeVisibility}" Margin="0,18,0,0">
+                    <Grid><TextBlock Text="本次专注" Style="{StaticResource CaptionText}" FontSize="11" /><TextBlock Text="{Binding FreeStateText}" Style="{StaticResource CaptionText}" FontSize="11" HorizontalAlignment="Right" AutomationProperties.AutomationId="FreeState" /></Grid>
+                    <ui:TimerDisplay TimeText="{Binding FreeElapsedText}" Caption="FREE FOCUS" TransitionKey="{Binding FreeStateText}" FontSize="76" Margin="0,10,0,0" AutomationProperties.Name="{Binding FreeAccessibleTimer}" AutomationProperties.AutomationId="FreeTimerDisplay" />
+                    <TextBlock Text="{Binding FreeHint}" Style="{StaticResource CaptionText}" TextAlignment="Center" Margin="0,0,0,12" />
+                    <Button Content="{Binding FreeActionText}" Command="{Binding FreeActionCommand}" Style="{StaticResource PrimaryButton}" MinWidth="152" HorizontalAlignment="Center" AutomationProperties.AutomationId="FreePrimaryAction" />
+                    <Button Content="结束本次" Command="{Binding FinishFreeCommand}" Style="{StaticResource QuietButton}" MinHeight="32" Padding="16,5" HorizontalAlignment="Center" Margin="0,6,0,0" AutomationProperties.AutomationId="FreeFinish" />
+                    <TextBlock Text="本次投入计入今日专注" Style="{StaticResource CaptionText}" FontSize="11" TextAlignment="Center" Margin="0,2,0,0" />
+                    <TextBlock Text="{Binding CurrentTaskText}" Style="{StaticResource CaptionText}" TextTrimming="CharacterEllipsis" TextAlignment="Center" Margin="0,10,0,0" ToolTip="{Binding TaskBindingHint}" AutomationProperties.AutomationId="CurrentFreeTask" />
+                </StackPanel>
+            </StackPanel>
+        </ui:GlassSurface>
+        <UniformGrid Columns="3" Margin="0,14,0,0">
+            <ui:GlassSurface Padding="18,14" CornerRadius="18" Margin="0,0,8,0"><StackPanel><TextBlock Text="今日专注" Style="{StaticResource CaptionText}" /><TextBlock Text="{Binding TodayText}" FontSize="23" FontFamily="{StaticResource NumericFontFamily}" Margin="0,4,0,0" AutomationProperties.AutomationId="TodayFocus" /><TextBlock Text="{Binding TodayDateText}" Style="{StaticResource CaptionText}" FontSize="10" Margin="0,2,0,0" AutomationProperties.AutomationId="FocusDate" /></StackPanel></ui:GlassSurface>
+            <ui:GlassSurface Padding="18,14" CornerRadius="18" Margin="4,0,4,0"><StackPanel><TextBlock Text="本次完成番茄" Style="{StaticResource CaptionText}" /><TextBlock Text="{Binding CompletedThisRun}" FontSize="23" FontFamily="{StaticResource NumericFontFamily}" Margin="0,4,0,0" AutomationProperties.AutomationId="CompletedPomodoros" /></StackPanel></ui:GlassSurface>
+            <ui:GlassSurface Padding="18,14" CornerRadius="18" Margin="8,0,0,0"><StackPanel><TextBlock Text="今日完成任务" Style="{StaticResource CaptionText}" /><TextBlock Text="{Binding CompletedTasksToday}" FontSize="23" FontFamily="{StaticResource NumericFontFamily}" Margin="0,4,0,0" AutomationProperties.AutomationId="CompletedTasksToday" /></StackPanel></ui:GlassSurface>
+        </UniformGrid>
+    </StackPanel>
+</UserControl>

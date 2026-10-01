@@ -1,0 +1,27 @@
+<UserControl x:Class="Floe.Desktop.Features.Settings.PomodoroSettingsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:Floe.Desktop.Controls">
+    <ui:GlassSurface>
+        <StackPanel>
+            <TextBlock Text="番茄节奏" Style="{StaticResource SectionTitle}" />
+            <TextBlock Text="给专注和休息，留出合适的时间。" Style="{StaticResource BodyText}" Margin="0,6,0,20" />
+            <UniformGrid Rows="1" Margin="0,0,-12,18">
+                <StackPanel Margin="0,0,12,0"><TextBlock Text="专注 / 分钟" Style="{StaticResource CaptionText}" Margin="0,0,0,6" /><TextBox Text="{Binding FocusMinutes, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SettingsInput}" AutomationProperties.AutomationId="FocusMinutes" AutomationProperties.Name="专注分钟，1 到 180" /></StackPanel>
+                <StackPanel Margin="0,0,12,0"><TextBlock Text="短休息 / 分钟" Style="{StaticResource CaptionText}" Margin="0,0,0,6" /><TextBox Text="{Binding ShortBreakMinutes, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SettingsInput}" AutomationProperties.AutomationId="ShortBreakMinutes" AutomationProperties.Name="短休息分钟，1 到 60" /></StackPanel>
+                <StackPanel Margin="0,0,12,0"><TextBlock Text="长休息 / 分钟" Style="{StaticResource CaptionText}" Margin="0,0,0,6" /><TextBox Text="{Binding LongBreakMinutes, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SettingsInput}" AutomationProperties.AutomationId="LongBreakMinutes" AutomationProperties.Name="长休息分钟，1 到 120" /></StackPanel>
+                <StackPanel Margin="0,0,12,0"><TextBlock Text="每轮 / 个" Style="{StaticResource CaptionText}" Margin="0,0,0,6" /><TextBox Text="{Binding FocusesPerCycle, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SettingsInput}" AutomationProperties.AutomationId="FocusesPerCycle" AutomationProperties.Name="每轮番茄数量，1 到 12" /></StackPanel>
+            </UniformGrid>
+            <CheckBox Content="自动进入下一阶段" IsChecked="{Binding AutoAdvance}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="AutoAdvance" />
+            <CheckBox Content="自动开始休息" IsChecked="{Binding AutoStartBreak}" IsEnabled="{Binding AutoAdvance}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="AutoStartBreak" />
+            <CheckBox Content="自动开始下一次专注" IsChecked="{Binding AutoStartFocus}" IsEnabled="{Binding AutoAdvance}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="AutoStartFocus" />
+            <TextBlock Text="关闭自动进入时，阶段结束后等待你确认。" Style="{StaticResource CaptionText}" Margin="0,8,0,12" />
+            <TextBlock Text="{Binding ValidationMessage}" Style="{StaticResource BodyText}" AutomationProperties.AutomationId="PomodoroValidation" />
+            <Grid Margin="0,12,0,0">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Feedback}" Style="{StaticResource CaptionText}" VerticalAlignment="Center" Margin="0,0,18,0" />
+                <Button Grid.Column="1" Content="应用参数" Command="{Binding ApplySettingsCommand}" Style="{StaticResource SecondaryButton}" AutomationProperties.AutomationId="ApplyPomodoroSettings" />
+            </Grid>
+        </StackPanel>
+    </ui:GlassSurface>
+</UserControl>

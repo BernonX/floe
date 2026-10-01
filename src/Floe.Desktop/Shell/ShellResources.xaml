@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:home="clr-namespace:Floe.Desktop.Features.Home"
+                    xmlns:tasks="clr-namespace:Floe.Desktop.Features.Tasks"
+                    xmlns:statistics="clr-namespace:Floe.Desktop.Features.Statistics"
+                    xmlns:settings="clr-namespace:Floe.Desktop.Features.Settings">
+    <DataTemplate DataType="{x:Type home:HomePageViewModel}"><home:HomePage /></DataTemplate>
+    <DataTemplate DataType="{x:Type tasks:TasksPageViewModel}"><tasks:TasksPage /></DataTemplate>
+    <DataTemplate DataType="{x:Type statistics:StatisticsPageViewModel}"><statistics:StatisticsPage /></DataTemplate>
+    <DataTemplate DataType="{x:Type settings:SettingsPageViewModel}"><settings:SettingsPage /></DataTemplate>
+</ResourceDictionary>

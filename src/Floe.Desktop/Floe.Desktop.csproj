@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets/Floe.ico</ApplicationIcon>
+    <AssemblyName>Floe</AssemblyName>
+    <RootNamespace>Floe.Desktop</RootNamespace>
+    <Product>Floe</Product>
+    <Description>A quiet space for focused work.</Description>
+    <Version>0.1.0-beta.1</Version>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.3</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets/Floe.ico" />
+    <Resource Include="Assets/Floe.png" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <ProjectReference Include="../Floe.Application/Floe.Application.csproj" />
+    <ProjectReference Include="../Floe.Infrastructure/Floe.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

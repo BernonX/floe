@@ -1,0 +1,49 @@
+<UserControl x:Class="Floe.Desktop.Features.Settings.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:Floe.Desktop.Controls"
+             xmlns:local="clr-namespace:Floe.Desktop.Features.Settings"
+             xmlns:widgets="clr-namespace:Floe.Desktop.Widgets"
+             AutomationProperties.AutomationId="SettingsPage">
+    <StackPanel>
+        <ui:GlassSurface>
+            <StackPanel>
+                <TextBlock Text="外观" Style="{StaticResource SectionTitle}" />
+                <TextBlock Text="选择适合此刻的明暗。" Style="{StaticResource BodyText}" Margin="0,6,0,20" />
+                <UniformGrid Rows="1" Margin="0,0,-10,24" KeyboardNavigation.TabNavigation="Once">
+                    <RadioButton Content="跟随系统" GroupName="Theme" Style="{StaticResource ThemeOption}" IsChecked="{Binding IsSystemTheme}" AutomationProperties.AutomationId="ThemeSystem" />
+                    <RadioButton Content="浅色" GroupName="Theme" Style="{StaticResource ThemeOption}" IsChecked="{Binding IsLightTheme}" AutomationProperties.AutomationId="ThemeLight" />
+                    <RadioButton Content="深色" GroupName="Theme" Style="{StaticResource ThemeOption}" IsChecked="{Binding IsDarkTheme}" AutomationProperties.AutomationId="ThemeDark" />
+                </UniformGrid>
+                <Border Height="1" Background="{DynamicResource DividerBrush}" Opacity="0.6" Margin="0,0,0,12" />
+                <CheckBox Style="{StaticResource Switch}" IsChecked="{Binding ReduceTransparency}" AutomationProperties.AutomationId="ReduceTransparency" AutomationProperties.Name="减少透明效果">
+                    <StackPanel>
+                        <TextBlock Text="减少透明效果" />
+                        <TextBlock Text="使用更清晰的实色表面，减少视觉干扰。" Style="{StaticResource CaptionText}" Margin="0,3,0,0" />
+                    </StackPanel>
+                </CheckBox>
+                <CheckBox Style="{StaticResource Switch}" IsChecked="{Binding ReduceMotion}" Margin="0,12,0,0" AutomationProperties.AutomationId="ReduceMotion" AutomationProperties.Name="减少动态效果">
+                    <StackPanel>
+                        <TextBlock Text="减少动态效果" />
+                        <TextBlock Text="保留状态反馈，立即停止页面、按钮、计时与组件过渡。" Style="{StaticResource CaptionText}" Margin="0,3,0,0" />
+                    </StackPanel>
+                </CheckBox>
+                <Grid Margin="0,24,0,0">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <TextBlock Text="即时生效 · 自动保存到本机" Style="{StaticResource CaptionText}" VerticalAlignment="Center" />
+                    <Button Grid.Column="1" Content="恢复默认" Command="{Binding ResetAppearanceCommand}" Style="{StaticResource SecondaryButton}" AutomationProperties.AutomationId="ResetAppearance" />
+                </Grid>
+            </StackPanel>
+        </ui:GlassSurface>
+        <local:PomodoroSettingsPanel DataContext="{Binding Pomodoro}" Margin="0,22,0,0" />
+        <widgets:WidgetSettingsPanel DataContext="{Binding Widgets}" Margin="0,22,0,0" />
+        <local:SystemSettingsPanel DataContext="{Binding System}" Margin="0,22,0,0" />
+        <ui:GlassSurface Margin="0,22,0,0" Padding="24,20">
+            <StackPanel>
+                <TextBlock Text="本地数据" Style="{StaticResource SectionTitle}" />
+                <TextBlock Text="任务、专注和设置保存在这台电脑。退出期间不计入专注。" Style="{StaticResource BodyText}" Margin="0,8,0,0" />
+                <TextBlock Text="{Binding DataPath}" Style="{StaticResource CaptionText}" TextWrapping="Wrap" Margin="0,8,0,0" AutomationProperties.AutomationId="DataPath" />
+            </StackPanel>
+        </ui:GlassSurface>
+    </StackPanel>
+</UserControl>

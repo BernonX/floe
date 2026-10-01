@@ -1,0 +1,10 @@
+<UserControl x:Class="Floe.Desktop.Widgets.FocusWidgetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:Floe.Desktop.Controls" AutomationProperties.AutomationId="FocusWidgetView">
+    <StackPanel>
+        <ui:TimerDisplay TimeText="{Binding TimerText}" TransitionKey="{Binding MotionStateKey}" AutomationProperties.AutomationId="WidgetTimer" AutomationProperties.Name="{Binding Phase}" AutomationProperties.ItemStatus="{Binding StateText}">
+            <ui:TimerDisplay.Template><ControlTemplate TargetType="ui:TimerDisplay"><TextBlock Text="{TemplateBinding TimeText}" FontFamily="{StaticResource NumericFontFamily}" FontSize="42" FontWeight="Light" HorizontalAlignment="Center" Typography.NumeralAlignment="Tabular" /></ControlTemplate></ui:TimerDisplay.Template>
+        </ui:TimerDisplay>
+        <TextBlock Text="{Binding TaskText}" TextTrimming="CharacterEllipsis" Foreground="{DynamicResource SecondaryTextBrush}" FontSize="12" TextAlignment="Center" Margin="0,6,0,0" ToolTip="{Binding TaskText}" AutomationProperties.AutomationId="WidgetTask" />
+    </StackPanel>
+</UserControl>

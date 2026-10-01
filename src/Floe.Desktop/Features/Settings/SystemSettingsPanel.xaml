@@ -1,0 +1,23 @@
+<UserControl x:Class="Floe.Desktop.Features.Settings.SystemSettingsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:Floe.Desktop.Controls" Loaded="OnLoaded">
+    <ui:GlassSurface>
+        <StackPanel>
+            <TextBlock Text="提醒与系统" Style="{StaticResource SectionTitle}" />
+            <TextBlock Text="在需要的时候提醒，其余时间保持安静。" Style="{StaticResource BodyText}" Margin="0,6,0,16" />
+            <CheckBox Content="专注、休息与任务完成提醒" IsChecked="{Binding NotificationsEnabled}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="NotificationsEnabled" />
+            <CheckBox Content="提醒声音" IsChecked="{Binding SoundEnabled}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="SoundEnabled" />
+            <TextBlock Text="声音单独控制。系统通知遵循 Windows 通知与勿扰设置。" Style="{StaticResource CaptionText}" Margin="0,6,0,14" />
+            <CheckBox Content="登录 Windows 后启动" IsChecked="{Binding StartWithWindows}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="StartWithWindows" />
+            <TextBlock Text="启动后驻留托盘。Windows 启动应用设置仍可禁用此项。" Style="{StaticResource CaptionText}" Margin="0,6,0,14" />
+            <CheckBox Content="关闭窗口时收进托盘" IsChecked="{Binding CloseToTray}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="CloseToTray" />
+            <CheckBox Content="最小化时收进托盘" IsChecked="{Binding MinimizeToTray}" Style="{StaticResource Switch}" AutomationProperties.AutomationId="MinimizeToTray" />
+            <TextBlock Text="收进托盘后专注继续；从托盘菜单或下方按钮退出。" Style="{StaticResource CaptionText}" Margin="0,6,0,18" />
+            <StackPanel Orientation="Horizontal">
+                <Button Content="测试提醒" Command="{Binding TestReminderCommand}" Style="{StaticResource SecondaryButton}" AutomationProperties.AutomationId="TestReminder" />
+                <Button Content="退出 Floe" Command="{Binding ExitAppCommand}" Style="{StaticResource QuietButton}" Margin="12,0,0,0" AutomationProperties.AutomationId="ExitApp" />
+            </StackPanel>
+            <TextBlock Text="{Binding Status}" Style="{StaticResource CaptionText}" TextWrapping="Wrap" Margin="0,12,0,0" AutomationProperties.AutomationId="SystemSettingsStatus" />
+        </StackPanel>
+    </ui:GlassSurface>
+</UserControl>

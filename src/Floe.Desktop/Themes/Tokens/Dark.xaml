@@ -1,0 +1,20 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="WindowColor">#171E25</Color>
+    <Color x:Key="SurfaceColor">#242E37</Color>
+    <Color x:Key="GlassTopColor">#882F3A49</Color>
+    <Color x:Key="GlassBottomColor">#601A2433</Color>
+    <Color x:Key="BorderColor">#344F6378</Color>
+    <Color x:Key="EdgeHighlightColor">#63788790</Color>
+    <Color x:Key="InnerEdgeColor">#70111A22</Color>
+    <Color x:Key="TextColor">#EDF2F5</Color>
+    <Color x:Key="MutedTextColor">#B0BEC9</Color>
+    <Color x:Key="AccentColor">#BCD9DD</Color>
+    <Color x:Key="AccentTextColor">#18333B</Color>
+    <Color x:Key="AccentSoftColor">#344D58</Color>
+    <Color x:Key="HoverColor">#20D5E6EC</Color>
+    <Color x:Key="InputColor">#1F2932</Color>
+    <Color x:Key="ShadowColor">#000000</Color>
+    <Color x:Key="AmbientAColor">#383B655E</Color>
+    <Color x:Key="AmbientBColor">#48314862</Color>
+    <Color x:Key="ShellTintColor">#C018202D</Color>
+</ResourceDictionary>

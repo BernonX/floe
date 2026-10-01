@@ -1,0 +1,23 @@
+<Application x:Class="Floe.Desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Tokens/Light.xaml" />
+                <ResourceDictionary Source="Themes/Tokens/Metrics.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Typography.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Surfaces.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Buttons.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Selection.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Scrolling.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Inputs.xaml" />
+                <ResourceDictionary Source="Themes/Templates/ComboBoxes.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Tasks.xaml" />
+                <ResourceDictionary Source="Themes/Templates/Menus.xaml" />
+                <ResourceDictionary Source="Shell/ShellResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
